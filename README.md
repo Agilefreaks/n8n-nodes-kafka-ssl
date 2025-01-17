@@ -14,7 +14,11 @@ npm i -g pnpm
 ```
 4. Install n8n to have access to node modules, required for development environment
 ```bash
-pnpm install n8n -g
+npm install n8n -g
+```
+5. Install local package
+```bash
+pnpm install
 ```
 5. Build n8n
 ```bash

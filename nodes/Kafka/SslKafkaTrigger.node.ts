@@ -299,13 +299,13 @@ export class SslKafkaTrigger implements INodeType {
 					}
 					let responsePromise = undefined;
 					if (!parallelProcessing && (options.nodeVersion as number) > 1) {
-						responsePromise = this.helpers.createDeferredPromise<IRun>();
+						responsePromise = await this.helpers.createDeferredPromise<IRun>();
 						this.emit([this.helpers.returnJsonArray([data])], undefined, responsePromise);
 					} else {
 						this.emit([this.helpers.returnJsonArray([data])]);
 					}
 					if (responsePromise) {
-						await responsePromise.promise;
+						await responsePromise.promise();
 					}
 				},
 			});
