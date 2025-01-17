@@ -5,7 +5,7 @@ export class SslKafkaApi implements ICredentialType {
 
 	displayName = 'SSL Kafka';
 
-	documentationUrl = 'https://github.com/unglobalcompact/n8n-ssl-kafka-node';
+	documentationUrl = 'https://github.com/unglobalcompact/n8n-nodes-ssl-kafka';
 
 	properties: INodeProperties[] = [
 		{
