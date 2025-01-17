@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-nodes-ssl-kafka",
   "version": "0.1.0",
   "description": "Custom Kafka node that allows SSL Connection to Kafka Cluster",
   "keywords": [
@@ -36,7 +36,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/SSLKafkaApi.credentials.js"
+      "dist/credentials/SslKafkaApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/Kafka/SslKafka.node.js",
@@ -54,5 +54,10 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "@kafkajs/confluent-schema-registry": "^3.6.0",
+		"kafkajs": "^2.2.4",
+    "tls": "0.0.1"
   }
 }

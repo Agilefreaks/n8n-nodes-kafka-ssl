@@ -15,8 +15,6 @@ import type {
 } from 'n8n-workflow';
 import { ApplicationError, NodeConnectionType, NodeOperationError } from 'n8n-workflow';
 
-import { generatePairedItemData } from '../../utils/utilities';
-
 export class SslKafka implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'SSL Kafka',
@@ -26,13 +24,13 @@ export class SslKafka implements INodeType {
 		version: 1,
 		description: 'Sends messages to a Kafka topic',
 		defaults: {
-			name: 'Kafka',
+			name: 'SSL Kafka',
 		},
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'kafka',
+				name: 'sslKafkaApi',
 				required: true,
 				testedBy: 'kafkaConnectionTest',
 			},
@@ -222,16 +220,33 @@ export class SslKafka implements INodeType {
 
 					const ssl = credentials.ssl as boolean;
 
+					let useSslConnectionOptions = false as boolean;
+					let sslConnectionOptions: ConnectionOptions = {}
+
+					if (ssl === true && (credentials.sslCa !== '' || credentials.sslCert !== ''  || credentials.sslKey !== '')) {
+						useSslConnectionOptions = true;
+						if (credentials.sslCa !== '') {
+							sslConnectionOptions.ca = [credentials.sslCa] as string[];
+						}
+						if (credentials.sslCert !== '') {
+							sslConnectionOptions.cert = credentials.sslCert as string;
+						}
+						if (credentials.sslKey !== '') {
+							sslConnectionOptions.key = credentials.sslKey as string;
+						}
+						if (credentials.sslPassphrase !== '') {
+							sslConnectionOptions.passphrase = credentials.sslPassphrase as string;
+						}
+					};
+
 					const config: KafkaConfig = {
 						clientId,
 						brokers,
-						ssl,
+						ssl: useSslConnectionOptions ? sslConnectionOptions : ssl,
 					};
 					if (credentials.authentication === true) {
 						if (!(credentials.username && credentials.password)) {
-							throw new ApplicationError('Username and password are required for authentication', {
-								level: 'warning',
-							});
+							throw new ApplicationError('Username and password are required for authentication');
 						}
 						config.sasl = {
 							username: credentials.username as string,
@@ -260,7 +275,6 @@ export class SslKafka implements INodeType {
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
-		const itemData = generatePairedItemData(items.length);
 
 		const length = items.length;
 
@@ -292,10 +306,29 @@ export class SslKafka implements INodeType {
 
 			const ssl = credentials.ssl as boolean;
 
+			let useSslConnectionOptions = false as boolean;
+			let sslConnectionOptions: ConnectionOptions = {}
+
+			if (ssl === true && (credentials.sslCa !== '' || credentials.sslCert !== ''  || credentials.sslKey !== '')) {
+				useSslConnectionOptions = true;
+				if (credentials.sslCa !== '') {
+					sslConnectionOptions.ca = [credentials.sslCa] as string[];
+				}
+				if (credentials.sslCert !== '') {
+					sslConnectionOptions.cert = credentials.sslCert as string;
+				}
+				if (credentials.sslKey !== '') {
+					sslConnectionOptions.key = credentials.sslKey as string;
+				}
+				if (credentials.sslPassphrase !== '') {
+					sslConnectionOptions.passphrase = credentials.sslPassphrase as string;
+				}
+			};
+
 			const config: KafkaConfig = {
 				clientId,
 				brokers,
-				ssl,
+				ssl: useSslConnectionOptions ? sslConnectionOptions : ssl,
 			};
 
 			if (credentials.authentication === true) {
@@ -400,15 +433,10 @@ export class SslKafka implements INodeType {
 
 			await producer.disconnect();
 
-			const executionData = this.helpers.constructExecutionMetaData(
-				this.helpers.returnJsonArray(responseData),
-				{ itemData },
-			);
-
-			return [executionData];
+			return [this.helpers.returnJsonArray(responseData)];
 		} catch (error) {
 			if (this.continueOnFail()) {
-				return [[{ json: { error: error.message }, pairedItem: itemData }]];
+				return [this.helpers.returnJsonArray({ error: error.message })];
 			} else {
 				throw error;
 			}
