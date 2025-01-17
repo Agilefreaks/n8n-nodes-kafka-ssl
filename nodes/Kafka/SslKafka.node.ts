@@ -221,7 +221,7 @@ export class SslKafka implements INodeType {
 					const ssl = credentials.ssl as boolean;
 
 					let useSslConnectionOptions = false as boolean;
-					let sslConnectionOptions: ConnectionOptions = {}
+					let sslConnectionOptions: ConnectionOptions = { rejectUnauthorized: false};
 
 					if (ssl === true && (credentials.sslCa !== '' || credentials.sslCert !== ''  || credentials.sslKey !== '')) {
 						useSslConnectionOptions = true;
@@ -307,7 +307,7 @@ export class SslKafka implements INodeType {
 			const ssl = credentials.ssl as boolean;
 
 			let useSslConnectionOptions = false as boolean;
-			let sslConnectionOptions: ConnectionOptions = {}
+			let sslConnectionOptions: ConnectionOptions = { rejectUnauthorized: false};
 
 			if (ssl === true && (credentials.sslCa !== '' || credentials.sslCert !== ''  || credentials.sslKey !== '')) {
 				useSslConnectionOptions = true;

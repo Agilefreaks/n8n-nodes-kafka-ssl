@@ -195,7 +195,7 @@ export class SslKafkaTrigger implements INodeType {
 		options.nodeVersion = this.getNode().typeVersion;
 
 		let useSslConnectionOptions = false as boolean;
-		let sslConnectionOptions: ConnectionOptions = {}
+		let sslConnectionOptions: ConnectionOptions = { rejectUnauthorized: false};
 
 		if (ssl === true && (credentials.sslCa !== '' || credentials.sslCert !== ''  || credentials.sslKey !== '')) {
 			useSslConnectionOptions = true;
