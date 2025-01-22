@@ -13,7 +13,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { ApplicationError, NodeConnectionType, NodeOperationError } from 'n8n-workflow';
+import { NodeOperationError } from 'n8n-workflow';
 
 export class SslKafka implements INodeType {
 	description: INodeTypeDescription = {
@@ -26,8 +26,8 @@ export class SslKafka implements INodeType {
 		defaults: {
 			name: 'SSL Kafka',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'sslKafkaApi',
@@ -246,7 +246,10 @@ export class SslKafka implements INodeType {
 					};
 					if (credentials.authentication === true) {
 						if (!(credentials.username && credentials.password)) {
-							throw new ApplicationError('Username and password are required for authentication');
+							throw new NodeOperationError(
+								null,
+								'Username and password are required for authentication',
+							);
 						}
 						config.sasl = {
 							username: credentials.username as string,
