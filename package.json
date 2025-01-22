@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-kafka-ssl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Custom Kafka node that allows SSL Connection to Kafka Cluster",
   "keywords": [
     "n8n-community-node-package"
@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@kafkajs/confluent-schema-registry": "^3.6.0",
-		"kafkajs": "^2.2.4",
+    "kafkajs": "^2.2.4",
     "tls": "0.0.1"
   }
 }
