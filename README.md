@@ -1,4 +1,4 @@
-# n8n-nodes-ssl-kafka
+# n8n-nodes-kafka-ssl
 
 This repo adds support for connecting to a Kafka Cluster with SSL certificates.
 
@@ -12,11 +12,7 @@ Use visual studio code for best experience.
 ```bash
 npm i -g pnpm
 ```
-4. Install n8n to have access to node modules, required for development environment
-```bash
-npm install n8n -g
-```
-5. Install local package
+4. Install local package
 ```bash
 pnpm install
 ```
@@ -28,7 +24,7 @@ pnpm run build
 7. Configure n8n docker container to use this custom node. Add the following volume for n8n-main service
 ```yaml
   volumes:
-    - ~/n8n-nodes-ssl-kafka/dist:/home/node/.n8n/custom/node_modules/n8n-nodes-ssl-kafka
+    - ~/n8n-nodes-kafka-ssl/dist:/home/node/.n8n/custom/node_modules/n8n-nodes-kafka-ssl
 ```
 
 ## Development

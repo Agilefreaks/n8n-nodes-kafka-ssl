@@ -15,22 +15,22 @@ import type {
 } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 
-export class SslKafka implements INodeType {
+export class KafkaSsl implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'SSL Kafka',
-		name: 'sslKafka',
+		displayName: 'Kafka SSL',
+		name: 'kafkaSsl',
 		icon: { light: 'file:kafka.svg', dark: 'file:kafka.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		description: 'Sends messages to a Kafka topic',
 		defaults: {
-			name: 'SSL Kafka',
+			name: 'Kafka SSL',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'sslKafkaApi',
+				name: 'kafkaSslApi',
 				required: true,
 				testedBy: 'kafkaConnectionTest',
 			},

@@ -1,11 +1,11 @@
 import type { ICredentialType, INodeProperties } from 'n8n-workflow';
 
-export class SslKafkaApi implements ICredentialType {
-	name = 'sslKafkaApi';
+export class KafkaSslApi implements ICredentialType {
+	name = 'kafkaSslApi';
 
-	displayName = 'SSL Kafka';
+	displayName = 'Kafka SSL';
 
-	documentationUrl = 'https://github.com/agilefreaks/n8n-nodes-ssl-kafka';
+	documentationUrl = 'https://github.com/agilefreaks/n8n-nodes-kafka-ssl';
 
 	properties: INodeProperties[] = [
 		{

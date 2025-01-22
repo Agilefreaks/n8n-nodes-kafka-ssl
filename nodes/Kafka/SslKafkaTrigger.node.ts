@@ -12,10 +12,10 @@ import type {
 } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 
-export class SslKafkaTrigger implements INodeType {
+export class KafkaSslTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'SSL Kafka Trigger',
-		name: 'sslKafkaTrigger',
+		displayName: 'Kafka SSL Trigger',
+		name: 'kafkaSslTrigger',
 		icon: { light: 'file:kafka.svg', dark: 'file:kafka.dark.svg' },
 		group: ['trigger'],
 		version: [1, 1.1],
@@ -27,7 +27,7 @@ export class SslKafkaTrigger implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'sslKafkaApi',
+				name: 'kafkaSslApi',
 				required: true,
 			},
 		],
@@ -182,7 +182,7 @@ export class SslKafkaTrigger implements INodeType {
 
 		const groupId = this.getNodeParameter('groupId') as string;
 
-		const credentials = await this.getCredentials('sslKafkaApi');
+		const credentials = await this.getCredentials('kafkaSslApi');
 
 		const brokers = ((credentials.brokers as string) || '').split(',').map((item) => item.trim());
 

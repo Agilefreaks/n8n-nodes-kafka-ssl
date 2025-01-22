@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-ssl-kafka",
+  "name": "n8n-nodes-kafka-ssl",
   "version": "0.1.0",
   "description": "Custom Kafka node that allows SSL Connection to Kafka Cluster",
   "keywords": [
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/agilefreaks/n8n-nodes-ssl-kafka.git"
+    "url": "https://github.com/agilefreaks/n8n-nodes-kafka-ssl.git"
   },
   "engines": {
     "node": ">=18.10",
@@ -36,11 +36,11 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/SslKafkaApi.credentials.js"
+      "dist/credentials/KafkaSslApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Kafka/SslKafka.node.js",
-      "dist/nodes/Kafka/SslKafkaTrigger.node.js"
+      "dist/nodes/Kafka/KafkaSsl.node.js",
+      "dist/nodes/Kafka/KafkaSslTrigger.node.js"
     ]
   },
   "devDependencies": {
