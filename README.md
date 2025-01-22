@@ -24,7 +24,7 @@ pnpm install
 ```bash
 pnpm run build
 ```
-6. Run n8n in docker container, see https://github.com/unglobalcompact/nexus
+6. Run n8n in docker mode
 7. Configure n8n docker container to use this custom node. Add the following volume for n8n-main service
 ```yaml
   volumes:
