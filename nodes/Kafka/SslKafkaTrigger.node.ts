@@ -216,7 +216,7 @@ export class SslKafkaTrigger implements INodeType {
 		const config: KafkaConfig = {
 			clientId,
 			brokers,
-			ssl: useSslConnectionOptions ? sslConnectionOptions : ssl,
+			ssl: useSslConnectionOptions ? sslConnectionOptions : false,
 			logLevel: logLevel.ERROR,
 		};
 
