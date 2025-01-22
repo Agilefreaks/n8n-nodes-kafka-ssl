@@ -18,7 +18,7 @@ export class KafkaSslTrigger implements INodeType {
 		name: 'kafkaSslTrigger',
 		icon: { light: 'file:kafka.svg', dark: 'file:kafka.dark.svg' },
 		group: ['trigger'],
-		version: [1, 1.1],
+		version: 1,
 		description: 'Consume messages from a Kafka topic',
 		defaults: {
 			name: 'Kafka Trigger',
