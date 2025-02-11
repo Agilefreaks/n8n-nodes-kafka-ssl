@@ -1,6 +1,6 @@
 # n8n-nodes-kafka-ssl
 
-This repo adds support for connecting to a Kafka Cluster with SSL certificates.
+This repo adds support for connecting to a Kafka Cluster with SSL certificates. The code is based on the work of https://github.com/cylabr on this https://github.com/n8n-io/n8n/pull/6398, plus some additional configuration. 
 
 ## Setup
 
