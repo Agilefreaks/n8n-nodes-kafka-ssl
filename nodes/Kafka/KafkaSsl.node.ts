@@ -301,7 +301,7 @@ export class KafkaSsl implements INodeType {
 				compression = CompressionTypes.GZIP;
 			}
 
-			const credentials = await this.getCredentials('kafka');
+			const credentials = await this.getCredentials('kafkaSslApi');
 
 			const brokers = ((credentials.brokers as string) || '').split(',').map((item) => item.trim());
 
