@@ -42,6 +42,21 @@ pnpm run build
 docker compose restart n8n-main
 ```
 
+## Publishing Package on npm
+1. Update version (patch / minor / major)
+```bash
+npm version patch
+```
+
+2. Push version update on git
+```bash
+git push
+```
+
+3. Publish version on npm
+```bash
+npm publish
+```
 
 ## License
 
