@@ -332,6 +332,7 @@ export class KafkaSsl implements INodeType {
 				clientId,
 				brokers,
 				ssl: useSslConnectionOptions ? sslConnectionOptions : ssl,
+				connectionTimeout: 30000
 			};
 
 			if (credentials.authentication === true) {
