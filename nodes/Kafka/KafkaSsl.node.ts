@@ -331,7 +331,7 @@ export class KafkaSsl implements INodeType {
 			const config: KafkaConfig = {
 				clientId,
 				brokers,
-				ssl: useSslConnectionOptions ? sslConnectionOptions : ssl,
+				ssl: useSslConnectionOptions ? sslConnectionOptions : false,
 				connectionTimeout: 30000
 			};
 
